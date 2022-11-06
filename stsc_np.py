@@ -68,6 +68,7 @@ def get_A_matrix(X, U_list, V_list, k, K):
 
 
 def get_rotation_matrix(X, C):
+    # no initialization here, we should use the previous list
     ij_list = [(i, j) for i in range(C) for j in range(C) if i < j]
     K = len(ij_list)
 

@@ -1,7 +1,7 @@
 from autograd import numpy as npy
 from pymanopt.manifolds import Stiefel
 from pymanopt import Problem
-from pymanopt.solvers import SteepestDescent
+from pymanopt.optimizers import SteepestDescent
 
 
 def get_rotation_matrix(X, C):
@@ -11,7 +11,7 @@ def get_rotation_matrix(X, C):
         return npy.sum((Z / M) ** 2)
 
     manifold = Stiefel(C, C)
-    problem = Problem(manifold=manifold, cost=cost, verbosity=0)
+    problem = Problem(manifold=manifold, cost=cost)
     solver = SteepestDescent(logverbosity=0)
     opt = solver.solve(problem=problem, x=npy.eye(C))
     return cost(opt), opt
